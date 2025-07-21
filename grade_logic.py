@@ -3,12 +3,13 @@ from groq import Groq
 import re
 import json
 from dotenv import load_dotenv
+import streamlit as st
 
 load_dotenv()
-
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
 # Load API key from environment
-client = Groq(api_key=os.environ["GROQ_API_KEY"])
-
+# client = Groq(api_key=os.environ["GROQ_API_KEY"])
+client = Groq(api_key=GROQ_API_KEY)
 def grade_answer(lesson_note, marking_scheme, student_answer):
     system_prompt = """
     You are an expert examiner. Grade the student's answer using the marking scheme and lesson note below.

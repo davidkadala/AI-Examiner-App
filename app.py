@@ -69,31 +69,31 @@ if st.button("Grade All Answers"):
     total_awarded = 0
     total_possible = 0
 
-with st.spinner("Grading all answers..."):
-   for i, answer in enumerate(answers):
-       result = grade_answer(
-           st.session_state['lesson_text'],
-           st.session_state['scheme_text'],
-           answer
-       )
+    with st.spinner("Grading all answers..."):
+       for i, answer in enumerate(answers):
+           result = grade_answer(
+               st.session_state['lesson_text'],
+               st.session_state['scheme_text'],
+               answer
+           )
 
-       if "error" in result:
-           st.error(f"Question {i+1} response error")
-           st.text(result['raw_output'])
-           continue
+           if "error" in result:
+               st.error(f"Question {i+1} response error")
+               st.text(result['raw_output'])
+               continue
 
-       results.append(result)
-       total_awarded += result['score_awarded']
-       total_possible += result['max_question_score']
+           results.append(result)
+           total_awarded += result['score_awarded']
+           total_possible += result['max_question_score']
 
-# Display all results
-st.success("Grading Complete!")
-for i, result in enumerate(results):
-   st.markdown(f"### Question {i+1}")
-   st.markdown(f"**Score:** {result['score_awarded']} / {result['max_question_score']}")
-   st.markdown(f"**Reason:** {result['grading_reason']}")
-   st.markdown(f"**Tip:** {result['improvement_tip']}")
-   st.divider()
+    # Display all results
+    st.success("Grading Complete!")
+    for i, result in enumerate(results):
+       st.markdown(f"### Question {i+1}")
+       st.markdown(f"**Score:** {result['score_awarded']} / {result['max_question_score']}")
+       st.markdown(f"**Reason:** {result['grading_reason']}")
+       st.markdown(f"**Tip:** {result['improvement_tip']}")
+       st.divider()
 
-st.markdown(f"## Total Score: `{total_awarded} / {total_possible}`")
-st.progress(total_awarded / total_possible)
+    st.markdown(f"## Total Score: `{total_awarded} / {total_possible}`")
+    st.progress(total_awarded / total_possible)

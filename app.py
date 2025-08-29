@@ -61,13 +61,13 @@ num_questions = st.number_input("Number of Questions", min_value=1, max_value=10
 
 answers = []
 for i in range(num_questions):
-answer = st.text_area(f"Answer to Question {i+1}", height=150)
-answers.append(answer)
+    answer = st.text_area(f"Answer to Question {i+1}", height=150)
+    answers.append(answer)
 
 if st.button("Grade All Answers"):
-results = []
-total_awarded = 0
-total_possible = 0
+    results = []
+    total_awarded = 0
+    total_possible = 0
 
 with st.spinner("Grading all answers..."):
    for i, answer in enumerate(answers):
